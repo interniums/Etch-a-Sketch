@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Etch-a-sketch</title>
+	<link rel="stylesheet" href="/style.css">
+	<style>
+
+	</style>
+</head>
+<body>
+	<script>
+
+		const body = document.body
+		body.setAttribute("style", "background-color: black; display: inline-flex; justify-content: center;")
+
+		const mainDiv = document.createElement("div")
+		mainDiv.setAttribute("style", "width: 960px; height: 960px; display: flex; background-color: ; flex-wrap: wrap;")
+		mainDiv.id = "mainDiv"
+		document.body.appendChild(mainDiv)
+
+		const button = document.createElement("button")
+		button.setAttribute("style", "border: solid, white, 1px; border-radius: 3px; width: 200px; height: 50px; background-color: white")
+		button.id = "button"
+		document.body.appendChild(button)
+		button.addEventListener("click", function () {
+			let userPrompt = prompt('How match?')
+			createGrid(Number(userPrompt))
+		})
+
+		function createGrid(value) {
+
+			let divSize = 0;
+			let side = value * value;
+			function size() {	
+				divSize = 960 / Math.sqrt(side) + 'px';
+				return divSize;
+			}
+
+			size()
+
+			function getRandomColor() {
+				var red = Math.floor(Math.random() * 256);
+        var green = Math.floor(Math.random() * 256);
+        var blue = Math.floor(Math.random() * 256);
+
+				var randomColor = "rgb(" + red + ", " + green + ", " + blue + ")";
+				return randomColor
+			}
+
+			for (let i = 1; i <= side; i++) {
+				mainDiv.appendChild(document.createElement("div")).
+				id = i; 
+				document.getElementById(i).
+				style.height = divSize;
+				document.getElementById(i).
+				style.width = divSize;
+				document.getElementById(i).
+				addEventListener("mouseover", function() {document.getElementById(i).style.backgroundColor = getRandomColor()
+				document.getElementById(i).style.transitionDuration = "0.2s"
+				})
+				document.getElementById(i).
+				addEventListener("mouseout", function() {document.getElementById(i).style.backgroundColor = "black"
+				document.getElementById(i).style.transitionDuration = "3s"
+				})
+			}
+		}
+	</script>
+</body>
+</html>
